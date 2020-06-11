@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 const morgan = require('morgan');
 
 const app = express();
@@ -16,14 +15,14 @@ require('./connection')
 // settings
 app.set('port', process.env.PORT);
 
-// middlewares
-app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}))
-
 // route base
 app.get('/', (req, res) => {
   res.send('Welcome API REST ExpresJS MongoDB.')
 })
+
+// middlewares
+app.use(morgan('dev'));
+app.use(express.json())
 
 // all routes
 app.use('/users', userRoutes)
